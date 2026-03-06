@@ -46,7 +46,7 @@ onMounted(() => {
       <h1 class="final__title">С 8 Марта!</h1>
       <p class="final__text">
         Вы прошли все 6 испытаний!<br/>
-        Вы — настоящая героиня!
+        Каждая из Вас — настоящая героиня!
       </p>
       <p class="final__heart">💐🎉✨</p>
       <p class="final__wish">
