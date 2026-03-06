@@ -42,23 +42,31 @@ const numberColors: Record<number, string> = {
 
 let longPressTimer: number | null = null
 
-function onTouchStart() {
+let isTap = false
+
+function onTouchStart(e: TouchEvent) {
+  e.preventDefault()
+  isTap = true
   longPressTimer = window.setTimeout(() => {
-    emit('flag', props.coord)
+    isTap = false
     longPressTimer = null
+    emit('flag', props.coord)
   }, 400)
 }
 
-function onTouchEnd(e: TouchEvent) {
+function onTouchEnd() {
   if (longPressTimer !== null) {
     clearTimeout(longPressTimer)
     longPressTimer = null
-    e.preventDefault()
+  }
+  if (isTap) {
+    isTap = false
     emit('reveal', props.coord)
   }
 }
 
 function onTouchMove() {
+  isTap = false
   if (longPressTimer !== null) {
     clearTimeout(longPressTimer)
     longPressTimer = null
@@ -69,7 +77,7 @@ function onTouchMove() {
 <template>
   <g
     class="mine-cell"
-    @touchstart.prevent="onTouchStart"
+    @touchstart="onTouchStart"
     @touchend="onTouchEnd"
     @touchmove="onTouchMove"
     @click.prevent="emit('reveal', coord)"
@@ -138,6 +146,8 @@ function onTouchMove() {
 <style scoped>
 .mine-cell {
   cursor: pointer;
+  pointer-events: all;
+  -webkit-tap-highlight-color: transparent;
 }
 .mine-cell:active polygon {
   filter: brightness(0.93);
