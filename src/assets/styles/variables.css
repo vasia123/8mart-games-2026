@@ -1,0 +1,15 @@
+:root {
+  --pink: #F8B4C8;
+  --lavender: #C8B4F8;
+  --mint: #B4F8D8;
+  --cream: #FFF8F0;
+  --white: #FFFFFF;
+  --text: #4A3F5C;
+  --text-light: #8A7FA0;
+  --shadow: rgba(74, 63, 92, 0.12);
+  --radius: 16px;
+  --radius-sm: 8px;
+
+  --font-body: 'Nunito', sans-serif;
+  --font-display: 'Comfortaa', cursive;
+}
